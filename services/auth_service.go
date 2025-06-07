@@ -65,6 +65,7 @@ func (a *AuthService) Login(username, password string) (string, error) {
 
 	session := &models.UserSession{
 		UserID:    user.ID,
+		Username:  user.Username,
 		Token:     token,
 		CreatedAt: now,
 		UpdatedAt: now,

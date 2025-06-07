@@ -7,6 +7,7 @@ import (
 type UserSession struct {
 	ID        uint       `gorm:"primaryKey" json:"id"`
 	UserID    uint       `gorm:"index" json:"user_id"`
+	Username  string     `gorm:"index" json:"username"`
 	Token     string     `gorm:"uniqueIndex" json:"token"`
 	CreatedAt time.Time  `gorm:"index" json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`

@@ -1,0 +1,31 @@
+|2025-06-07 15:32:00| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:32:52| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:34:39| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:35:39| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:37:22| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:38:01| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:38:43| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:39:40| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:39:40| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 15:44:56| |service-system| |info|  :  GIN_MODE:debug
+|2025-06-07 15:44:56| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 15:48:57| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:48:57| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 15:52:47| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:52:47| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 15:54:07| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:54:07| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 15:59:29| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 15:59:29| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:02:19| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:02:19| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:06:00| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:06:00| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:06:21| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:06:21| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:07:22| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:07:22| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:21:37| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:21:37| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 16:28:32| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 16:28:32| |service-system| |info|  :  Server running on port:8800

@@ -43,11 +43,18 @@ This project uses [Swagger UI](https://swagger.io/tools/swagger-ui/) for interac
 │   ├── auth_service.go
 │   └── user_service.go
 ├── utils/
-│   └── jwt.go
+│   ├── jwt.go
+│   └── utils.go
+├── docs/
+│   └── swagger.yaml
+├── logger/
+│   └── logger.go
 ├── main.go
 ├── go.mod
 ├── go.sum
+├── README.md
 └── .env
+
 ```
 
 ---

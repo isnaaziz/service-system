@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"service_system/services"
+	"service_system/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,6 +12,7 @@ import (
 // @Description Get all active users
 // @Tags User
 // @Produce  json
+// @Security BearerAuth
 // @Success 200 {array} models.User
 // @Router /users [get]
 func GetUsers(c *gin.Context) {
@@ -42,4 +44,42 @@ func SoftDeleteUser(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"message": "User soft deleted successfully"})
+}
+
+// ChangePassword godoc
+// @Summary Change user password
+// @Description Change password for the current user
+// @Tags User
+// @Accept  json
+// @Produce  json
+// @Security BearerAuth
+// @Param   body  body  object{old_password=string,new_password=string}  true  "Password change payload"
+// @Success 200 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Router /users/change-password [post]
+func ChangePassword(c *gin.Context) {
+	var input struct {
+		OldPassword string `json:"old_password"`
+		NewPassword string `json:"new_password"`
+	}
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(400, gin.H{"error": "Invalid input"})
+		return
+	}
+
+	// Ambil username dari JWT claims (misal sudah ada middleware JWT)
+	claims, exists := c.Get("claims")
+	if !exists {
+		c.JSON(401, gin.H{"error": "Unauthorized"})
+		return
+	}
+	username := claims.(*utils.Claims).Username
+
+	userService := services.UserService{DB: db}
+	if err := userService.ChangePassword(username, input.OldPassword, input.NewPassword); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Password changed successfully"})
 }

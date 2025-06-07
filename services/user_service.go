@@ -1,10 +1,12 @@
 package services
 
 import (
+	"errors"
 	"service_system/models"
 	"strconv"
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
@@ -37,4 +39,25 @@ func (u *UserService) SoftDeleteUser(userID string) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UserService) ChangePassword(username, oldPassword, newPassword string) error {
+	var user models.User
+	if err := u.DB.Where("username = ? AND is_deleted = ?", username, false).First(&user).Error; err != nil {
+		return err
+	}
+
+	// Cek password lama
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(oldPassword)); err != nil {
+		return errors.New("old password is incorrect")
+	}
+
+	// Hash password baru
+	hashed, err := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+
+	user.Password = string(hashed)
+	return u.DB.Save(&user).Error
 }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service System API Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Service System API Dashboard</h1>
+            <p>Test and manage your API endpoints with style</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <button onclick="showSection('login')" class="nav-btn active" data-section="login">
+                            Login
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button onclick="showSection('signup')" class="nav-btn" data-section="signup">
+                            Sign Up
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button onclick="showSection('users')" class="nav-btn" data-section="users">
+                            Users
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button onclick="showSection('password')" class="nav-btn" data-section="password">
+                            Change Password
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button onclick="logout()" class="btn-danger">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <div class="status-bar">
+                    <div class="status-indicator">
+                        <div class="status-dot" id="status-dot"></div>
+                        <span id="status-text">Not Connected</span>
+                    </div>
+                    <div id="user-info">
+                        <span id="current-user">Not logged in</span>
+                    </div>
+                </div>
+
+                <!-- Login Section -->
+                <div class="section active" id="login-section">
+                    <h2> Login to Your Account</h2>
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password">
+                    </div>
+                    <button class="btn btn-success" onclick="login()">Login</button>
+                    <div class="result-container" id="login-result" style="display: none;"></div>
+                </div>
+
+                <!-- Signup Section -->
+                <div class="section" id="signup-section">
+                    <h2> Create New Account</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-username">Username</label>
+                            <input type="text" id="signup-username" placeholder="Choose a username">
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email</label>
+                            <input type="email" id="signup-email" placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password">
+                    </div>
+                    <button class="btn" onclick="signup()">Create Account</button>
+                    <div class="result-container" id="signup-result" style="display: none;"></div>
+                </div>
+
+                <!-- Users Section -->
+                <div class="section" id="users-section">
+                    <h2> User Management</h2>
+                    <button class="btn" onclick="getUsers()">Refresh Users</button>
+                    <div id="users-grid" class="users-grid"></div>
+                    <div class="result-container" id="users-result" style="display: none;"></div>
+                </div>
+
+                <!-- Change Password Section -->
+                <div class="section" id="password-section">
+                    <h2> Change Password</h2>
+                    <div class="form-group">
+                        <label for="old-password">Current Password</label>
+                        <input type="password" id="old-password" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" placeholder="Enter new password">
+                    </div>
+                    <button class="btn" onclick="changePassword()">Update Password</button>
+                    <div class="result-container" id="change-password-result" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
