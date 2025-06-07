@@ -37,17 +37,17 @@ A simple REST API for user management and authentication using JWT, built with *
 package main
 
 import (
-    "oprek_dewe/controllers"
-    "oprek_dewe/database"
-    "oprek_dewe/router"
+    "service_system/controllers"
+    "service_system/database"
+    "service_system/router"
 )
 
 func main() {
-    database.Init()                     // Initialize database connection & migration
-    controllers.SetDB(database.DB)      // Inject DB into controllers
+    database.Init()                
+    controllers.SetDB(database.DB)  
 
-    r := router.SetupRouter()           // Setup modular routing
-    r.Run(":8800")                      // Run server on port 8800
+    r := router.SetupRouter()           
+    r.Run(":8800")               
 }
 ```
 
@@ -58,7 +58,7 @@ func main() {
 1. **Clone the repo & install dependencies**
     ```bash
     git clone <repo-url>
-    cd oprek_dewe
+    cd service_system
     go mod tidy
     ```
 
