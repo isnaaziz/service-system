@@ -6,6 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetUsers godoc
+// @Summary Get all users
+// @Description Get all active users
+// @Tags User
+// @Produce  json
+// @Success 200 {array} models.User
+// @Router /users [get]
 func GetUsers(c *gin.Context) {
 	userService := services.UserService{DB: db}
 	users, err := userService.GetActiveUsers()
@@ -17,6 +24,14 @@ func GetUsers(c *gin.Context) {
 	c.JSON(200, users)
 }
 
+// SoftDeleteUser godoc
+// @Summary Soft delete user
+// @Description Soft delete user by ID
+// @Tags User
+// @Param   id  path  int  true  "User ID"
+// @Success 200 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /users/{id} [delete]
 func SoftDeleteUser(c *gin.Context) {
 	userID := c.Param("id")
 

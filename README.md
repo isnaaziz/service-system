@@ -4,6 +4,27 @@ A simple REST API for user management and authentication using JWT, built with *
 
 ---
 
+## Swagger API Documentation
+
+This project uses [Swagger UI](https://swagger.io/tools/swagger-ui/) for interactive API documentation.
+
+- **View Swagger UI:**  
+  After running the server, open [http://localhost:8800/swagger/index.html](http://localhost:8800/swagger/index.html) in your browser.
+
+- **How to generate/update Swagger docs:**  
+    1. Install swag CLI if you haven't:
+        ```bash
+        go install github.com/swaggo/swag/cmd/swag@latest
+        ```
+    2. Make sure `$GOPATH/bin` or `$HOME/go/bin` is in your `PATH`.
+    3. Generate docs:
+        ```bash
+        swag init
+        ```
+    4. The Swagger docs will be available at `/swagger/index.html` when the server is running.
+
+---
+
 ## Project Structure
 
 ```

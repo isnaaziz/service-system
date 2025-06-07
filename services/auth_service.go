@@ -39,6 +39,11 @@ func (a *AuthService) Login(username, password string) (string, error) {
 		return "", errors.New("invalid credentials")
 	}
 
+	// Tambahkan pengecekan soft delete
+	if user.IsDeleted {
+		return "", errors.New("user has been deleted")
+	}
+
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
 		return "", errors.New("invalid credentials")
 	}
