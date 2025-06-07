@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Service System API Test Frontend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        input,
+        button {
+            margin: 0.2em;
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Service System API Test Frontend</h1>
+
+    <div class="section">
+        <h2>Signup</h2>
+        <input id="signup-username" placeholder="Username">
+        <input id="signup-email" placeholder="Email">
+        <input id="signup-password" type="password" placeholder="Password">
+        <button onclick="signup()">Signup</button>
+        <pre id="signup-result"></pre>
+    </div>
+
+    <div class="section">
+        <h2>Login</h2>
+        <input id="login-username" placeholder="Username">
+        <input id="login-password" type="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <pre id="login-result"></pre>
+    </div>
+
+    <div class="section">
+        <h2>Logout</h2>
+        <button onclick="logout()">Logout</button>
+        <pre id="logout-result"></pre>
+    </div>
+
+    <div class="section">
+        <h2>Get Users</h2>
+        <button onclick="getUsers()">Get Users</button>
+        <pre id="users-result"></pre>
+    </div>
+
+    <script>
+        let token = "";
+
+        function signup() {
+            fetch('http://localhost:8800/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: document.getElementById('signup-username').value,
+                    email: document.getElementById('signup-email').value,
+                    password: document.getElementById('signup-password').value
+                })
+            })
+                .then(res => res.json())
+                .then(data => document.getElementById('signup-result').textContent = JSON.stringify(data, null, 2));
+        }
+
+        function login() {
+            fetch('http://localhost:8800/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: document.getElementById('login-username').value,
+                    password: document.getElementById('login-password').value
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('login-result').textContent = JSON.stringify(data, null, 2);
+                    if (data.token) token = data.token;
+                });
+        }
+
+        function logout() {
+            fetch('http://localhost:8800/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ token })
+            })
+                .then(res => res.json())
+                .then(data => document.getElementById('logout-result').textContent = JSON.stringify(data, null, 2));
+        }
+
+        function getUsers() {
+            fetch('http://localhost:8800/users', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+                .then(res => res.json())
+                .then(data => document.getElementById('users-result').textContent = JSON.stringify(data, null, 2));
+        }
+    </script>
+</body>
+
+</html>
