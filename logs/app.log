@@ -29,3 +29,7 @@
 |2025-06-07 16:21:37| |service-system| |info|  :  Server running on port:8800
 |2025-06-07 16:28:32| |service-system| |info|  :  GIN_MODE:release
 |2025-06-07 16:28:32| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 17:47:25| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 17:47:25| |service-system| |info|  :  Server running on port:8800
+|2025-06-07 17:50:21| |service-system| |info|  :  GIN_MODE:release
+|2025-06-07 17:50:21| |service-system| |info|  :  Server running on port:8800

@@ -2,8 +2,8 @@ package services
 
 import (
 	"errors"
+	"service_system/middleware"
 	"service_system/models"
-	"service_system/utils"
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
@@ -22,9 +22,10 @@ func (a *AuthService) Register(username, password, email string) (*models.User, 
 	}
 
 	user := &models.User{
-		Username: username,
-		Password: string(hashedPassword),
-		Email:    email,
+		Username:  username,
+		Password:  string(hashedPassword),
+		Email:     email,
+		IsDeleted: false,
 	}
 
 	if err := a.DB.Create(user).Error; err != nil {
@@ -39,7 +40,6 @@ func (a *AuthService) Login(username, password string) (string, error) {
 		return "", errors.New("invalid credentials")
 	}
 
-	// Tambahkan pengecekan soft delete
 	if user.IsDeleted {
 		return "", errors.New("user has been deleted")
 	}
@@ -58,7 +58,7 @@ func (a *AuthService) Login(username, password string) (string, error) {
 		return "", errors.New("user already logged in, please logout first")
 	}
 
-	token, err := utils.CreateJWT(user.Username)
+	token, err := middleware.CreateJWT(user.Username)
 	if err != nil {
 		return "", err
 	}

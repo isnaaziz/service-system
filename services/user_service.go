@@ -47,12 +47,10 @@ func (u *UserService) ChangePassword(username, oldPassword, newPassword string) 
 		return err
 	}
 
-	// Cek password lama
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(oldPassword)); err != nil {
 		return errors.New("old password is incorrect")
 	}
 
-	// Hash password baru
 	hashed, err := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
 	if err != nil {
 		return err

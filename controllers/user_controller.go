@@ -1,8 +1,8 @@
 package controllers
 
 import (
+	"service_system/middleware"
 	"service_system/services"
-	"service_system/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -73,7 +73,7 @@ func ChangePassword(c *gin.Context) {
 		c.JSON(401, gin.H{"error": "Unauthorized"})
 		return
 	}
-	username := claims.(*utils.Claims).Username
+	username := claims.(*middleware.Claims).Username
 
 	userService := services.UserService{DB: db}
 	if err := userService.ChangePassword(username, input.OldPassword, input.NewPassword); err != nil {
